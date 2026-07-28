@@ -22,7 +22,7 @@ void mat_accept(int a[20][20],int r1, int c1)
              printf("\n");
     }
 }
-void compact(int a[20][20], int r, int c, int cp[20][20])
+void compact(int a[20][20], int r, int c, int cp[][3])
 {
       int k = 1;
     cp[0][0] = r;
@@ -102,8 +102,8 @@ void Fast_Transpose(int b[][3], int d[][3])
 
 int  main()
 {    int a[20][20];
-    int cp[20][20];
-    int tran[20][20];
+    int cp[401][3];
+    int tran[401][3];
     int r,c;
   int cho;
     printf("Enter row and col for Matrix:\n");
