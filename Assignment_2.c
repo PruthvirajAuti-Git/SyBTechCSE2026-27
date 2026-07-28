@@ -44,7 +44,8 @@ void compact(int a[20][20], int r, int c, int cp[20][20])
     cp[0][2] = k - 1;
 //    return k;
 }
-void Transpose(int b[][3], int c[][3]){
+void Transpose(int b[][3], int c[][3])
+{
    int m=b[0][0];
    int n=b[0][1];
    int t=b[0][2];
@@ -55,7 +56,7 @@ void Transpose(int b[][3], int c[][3]){
         return;
     }
     int q=1;
-    for(int col=0; col<=n; col++){
+    for(int col=0; col<n; col++){
         for(int p=1; p<=t; p++){
             if(b[p][1]==col){
                 c[q][0]=b[p][1];
@@ -67,7 +68,8 @@ void Transpose(int b[][3], int c[][3]){
     }
 }
 
-void Fast_Transpose(int b[][3], int d[][3]){
+void Fast_Transpose(int b[][3], int d[][3])
+{
     int m=b[0][0];
     int n=b[0][1];
     int t=b[0][2];
@@ -77,15 +79,15 @@ void Fast_Transpose(int b[][3], int d[][3]){
     if (t<=0){
         return;
     }
-    int S[m], T[m];
-    for(int i=0; i<m; i++){
+    int S[n], T[n];
+    for(int i=0; i<n; i++){
         S[i]=0;
     }
     for(int i=1; i<=t; i++){
         S[b[i][1]]=S[b[i][1]]+1;
     }
     T[0]=1;
-    for(int i=1; i<=m; i++){
+    for(int i=1; i<n; i++){
         T[i]=T[i-1]+S[i-1];
     }
     for(int i=1; i<=t; i++){
@@ -97,9 +99,11 @@ void Fast_Transpose(int b[][3], int d[][3]){
     }
 }
 
+
 int  main()
 {    int a[20][20];
     int cp[20][20];
+    int tran[20][20];
     int r,c;
   int cho;
     printf("Enter row and col for Matrix:\n");
@@ -123,11 +127,18 @@ int  main()
             compact(a,r,c,cp);
             mat_print(cp,cp[0][2]+1,3);
             break;
-        case 3:
+                case 3: 
+            compact(a, r, c, cp);
+            Transpose(cp, tran); 
+            mat_print(tran, tran[0][2] + 1, 3); 
             break;
-            
-        case 4:
+        case 4: 
+            compact(a, r, c, cp);
+            Fast_Transpose(cp, tran); 
+            mat_print(tran, tran[0][2] + 1, 3); 
             break;
+
+
         default:
             printf("invalid choice ");
             break;
